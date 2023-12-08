@@ -26,22 +26,21 @@ $('#save-btn').on('click', function(event) {
     }
 });
 
-$('#profile-dropdown').on('change', function(){
-    if ($(this).find(':selected').text() === 'Select a profile'){
+$('#profile-dropdown').on('change', function(){ //this function will be triggered if an option is selected
+    if ($(this).find(':selected').text() === 'Select a profile'){ //if the default option is selected, clear the input boxes
         console.log('Clearing form');
         $('#pet-name').val('');
         $('#pet-weight').val('');
     }
     else {
         console.log('New profile selected');
-        var selectedProfile = JSON.parse($(this).val());
-        var tempProfile = new PetProfile(selectedProfile.name, selectedProfile.weight);
+        var selectedProfile = JSON.parse($(this).val()); //the profile linked to each option is saved in the value attr, so this pulls it and parses it from JSON to regular
         console.log('Loading ' + tempProfile.getName() + '\'s data');
-        if (selectedProfile !== null){
-            var tempProfile = new PetProfile(selectedProfile.name, selectedProfile.weight);
+        if (selectedProfile !== null){ //if the profile isn't null,
+            var tempProfile = new PetProfile(selectedProfile.name, selectedProfile.weight);//creates a new profile with the same fields as the one from the dropdown
             console.log('Loading ' + tempProfile.getName() + '\'s data');
             $('#pet-name').val(tempProfile.getName());
-            $('#pet-weight').val(tempProfile.getWeight());
+            $('#pet-weight').val(tempProfile.getWeight()); //loads data into input boxes
         }
     }
 });
@@ -50,18 +49,16 @@ function loadProfiles(){
     $('#profile-dropdown').empty()
     var defaultOption = $('<option>');
     defaultOption.text('Select a profile');
-    $('#profile-dropdown').append(defaultOption);
+    $('#profile-dropdown').append(defaultOption); //this just creates a default option so the dropdown isn't completely blank when there's no profiles
 
-    if (localStorage.length > 0){
-        for (var i = 1; i <= localStorage.length; i++){
-            var storedProfile = JSON.parse(localStorage.getItem('petProfile'+i));
-            var tempProfile = new PetProfile(storedProfile.name, storedProfile.weight);
+    for (var i = 1; i <= localStorage.length; i++){ //if nothing in storage, then this shouldn't go through and just default will be loaded
+        var storedProfile = JSON.parse(localStorage.getItem('petProfile'+i));
+        var tempProfile = new PetProfile(storedProfile.name, storedProfile.weight);
 
-            var newOption = $('<option>');
-            newOption.attr('value', JSON.stringify(tempProfile));
-            newOption.text(tempProfile.getName());
-            $('#profile-dropdown').append(newOption);
-        }
+        var newOption = $('<option>');
+        newOption.attr('value', JSON.stringify(tempProfile));
+        newOption.text(tempProfile.getName());
+        $('#profile-dropdown').append(newOption);
     }
 }
     

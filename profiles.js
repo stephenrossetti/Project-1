@@ -35,7 +35,6 @@ $('#profile-dropdown').on('change', function(){ //this function will be triggere
     else {
         console.log('New profile selected');
         var selectedProfile = JSON.parse($(this).val()); //the profile linked to each option is saved in the value attr, so this pulls it and parses it from JSON to regular
-        console.log('Loading ' + tempProfile.getName() + '\'s data');
         if (selectedProfile !== null){ //if the profile isn't null,
             var tempProfile = new PetProfile(selectedProfile.name, selectedProfile.weight);//creates a new profile with the same fields as the one from the dropdown
             console.log('Loading ' + tempProfile.getName() + '\'s data');

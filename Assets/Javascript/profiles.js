@@ -11,6 +11,7 @@ class PetProfile {
 loadProfiles();
 
 $('#save-btn').on('click', function(event) {
+    event.preventDefault();
     var petName = $('#pet-name').val().trim();
     var petWeight = $('#pet-weight').val().trim(); //grabs values from the two text inputs
 
@@ -25,6 +26,13 @@ $('#save-btn').on('click', function(event) {
 
     }
 });
+
+$('#clear-profs').on('click', function(){ 
+    localStorage.clear(); 
+    loadProfiles(); 
+    $('#pet-name').val('');
+    $('#pet-weight').val('')
+})
 
 $('#profile-dropdown').on('change', function(){ //this function will be triggered if an option is selected
     if ($(this).find(':selected').text() === 'Select a profile'){ //if the default option is selected, clear the input boxes

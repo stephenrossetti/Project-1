@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="Assets/style.css">
-    <link rel="icon" type="image/x-icon" href="Assets/Images/dog_bone_icon_134489.ico">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/x-icon" href="dog_bone_icon_134489.ico">
     <title>Pet Treat Informer</title>
   </head>
 
-  <body>
+<body>
     <header>
-        <h1>Pet Treat Informer</h1>
-    </header>
 
+        <h1 id="header-info">Pet Treat Informer</h1>
+    </header>
+<div id="main-card">
     <div id="pet-card">
         <select id="profile-dropdown">
         </select>
@@ -55,27 +56,39 @@
 
           <button type="submit" id="save-btn">Save Profile</button>
         </form>
-        <button id="clear-profs" class="btn">Clear profiles</button>
+        <div id="buttons">
+          <button id="clear-profs" class="btn">Clear profiles</button>
+          <button id="get-info">Get Info -></button>
+        </div>
         
-        <button id="get-info">Get Info -></button>
     </div>
-
-    <div id="food-info">
-        <img src="" alt="">
-        <div id="food-wiki">
-            <p id="food-summary"></p>
-            <a id="food-link"></a>
+    <div class=api-info id="food-info">
+        <div id="img-text">
+            <p>tellus integer feugiat scelerisque varius</p>
+            <img src="tree.jpg" alt="tree">
+            <div id="food-wiki">
+                <p id="food-summary"></p>
+                <a id="food-link"></a>
+            </div>
         </div>
         <div id="food-nutr">
-            <p></p>
+            <p>tellus integer feugiat scelerisque varius</p>
+            <div id="lower-btn">
             <button id="clear-btn">Clear</button>
+            </div>
         </div>
     </div>
 
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="Assets/Javascript/script.js"></script>
-      <script src="Assets/Javascript/profiles.js"></script>
+      <script src="script.js"></script>
+      <script src="profiles.js"></script>
     </section>
-  </body>
+
+    <footer class="footer">
+        <h1 id="resources">Additional Resources</h1>
+        <p><a href="https://petnutritionalliance.org/resources/calorie-calculator?type=dogs">Dog Calorie Calculator</a>
+        <p><a href="https://www.petmd.com/dog/centers/nutrition">Nutrition Articles</a>
+    </footer>
+</body>
 
 </html>

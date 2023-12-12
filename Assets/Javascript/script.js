@@ -1,8 +1,4 @@
-$('#selectedFood').on('change', function(){
-    selectFood = $(this).val();
-    wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + selectFood;
-    wikiUrl = 'https://en.wikipedia.org/wiki/' + selectFood;
-    });
+
 
 // var food = selectFood;
 var selectFood = '';

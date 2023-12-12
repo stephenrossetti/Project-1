@@ -36,40 +36,40 @@ class Food {
 }
 
 //start stephen's code
+$('#selectedFood').on('change', function(){
+    selectFood = $(this).val();
+    wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + selectFood;
+    wikiUrl = 'https://en.wikipedia.org/wiki/' + selectFood;
+    });
 
-var food = ['Cheese'];
-var wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+food[0];
-var wikiDiv = $('#food-wiki');
-var getInfoBtn = $('#get-info');
-var linkText = '';
-
-function getWikiApi () {
-fetch(wikiApiUrl)
-    .then(function(response) {
-        console.log(response);
-        return response.json()
-    })
-    .then(function(data) {
-        console.log(data);
-
-        var linkEl = document.createElement('a');
-        linkText = 'https://en.wikipedia.org/wiki/' + food[0];
-        console.log(linkText);
-        linkEl.href = linkText;
-
-        linkEl.append(linkText);
-        wikiDiv.append(linkEl);
-
-        var wikiTextEl = document.createElement('p');
-        var wikiText = data.extract;
-        wikiTextEl.textContent = wikiText;
-        wikiDiv.append(wikiTextEl);
-
-      }
-    );
-}
-
-getInfoBtn.on('click', getWikiApi);
+    var selectFood = '';
+    var wikiApiUrl = '';
+    var wikiUrl = '';
+    var wikiDiv = $('#food-wiki');
+    var getInfoBtn = $('#get-info');
+    
+    function getWikiApi () {
+    fetch(wikiApiUrl)
+        .then(function(response) {
+            console.log(response);
+            return response.json()
+        })
+        .then(function(data) {
+            console.log(data);
+    
+            var wikiTextEl = $('#food-summary');
+            var wikiText = data.extract;
+            wikiTextEl.text(wikiText);
+    
+            var wikiLinkEl = $('#food-link');
+            wikiLinkEl.attr('href', wikiUrl);
+            wikiLinkEl.text(wikiUrl);
+    
+          }
+        );
+    }
+    
+    getInfoBtn.on('click', getWikiApi);
 
 // start logan's code
 // currently has placeholder api

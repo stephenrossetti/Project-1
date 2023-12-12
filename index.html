@@ -23,12 +23,36 @@
 
           <input type="text" id="pet-weight" placeholder="Pet weight">
 
-          <select name="" id="foods">
-              <option selected>Select food</option>
-              <option>Cheese</option>
-              <option>Apple</option>
-              <option>Nuts</option>
-          </select>
+          <div class="select is-normal">
+            <select id="selectedFood">
+              <option value="Select Food">Select Food</option>
+              <option value="Apples">Apples</option>
+              <option value="Bananas">Bananas</option>
+              <option value="Blueberries">Blueberries</option>
+              <option value="Broccoli">Broccoli</option>
+              <option value="Carrots">Carrots</option>
+              <option value="Cheese">Cheese</option>
+              <option value="Chicken">Chicken</option>
+              <option value="Cucumbers">Cucumbers</option>
+              <option value="Eggs">Eggs</option>
+              <option value="Oatmeal">Oatmeal</option>
+              <option value="Peanut Butter">Peanut Butter</option>
+              <option value="Peas">Peas</option>
+              <option value="Popcorn">Popcorn</option>
+              <option value="Rice">Rice</option>
+              <option value="Shrimp">Shrimp</option>
+              <option value="Spinach">Spinach</option>
+              <option value="Watermelon">Watermelon</option>
+              <option value="Avocado">*Avocado</option>
+              <option value="Cherries">*Cherries</option>
+              <option value="Chocolate">*Chocolate</option>
+              <option value="Cinnamon">*Cinnamon</option>
+              <option value="Coffee">*Coffee</option>
+              <option value="Grapes">*Grapes</option>
+              <option value="Onions">*Onions</option>
+            </select>
+          </div>
+
           <button type="submit" id="save-btn">Save Profile</button>
         </form>
         <button id="clear-profs" class="btn">Clear profiles</button>
@@ -39,7 +63,8 @@
     <div id="food-info">
         <img src="" alt="">
         <div id="food-wiki">
-            <p></p>
+            <p id="food-summary"></p>
+            <a id="food-link"></a>
         </div>
         <div id="food-nutr">
             <p></p>

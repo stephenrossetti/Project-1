@@ -1,5 +1,13 @@
-var food = ['Cheese'];
-var wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+food[0];
+$('#selectedFood').on('change', function(){
+    selectFood = $(this).val();
+    wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + selectFood;
+    wikiUrl = 'https://en.wikipedia.org/wiki/' + selectFood;
+    });
+
+// var food = selectFood;
+var selectFood = '';
+var wikiApiUrl = '';
+var wikiUrl = '';
 var wikiDiv = $('#food-wiki');
 var getInfoBtn = $('#get-info');
 
@@ -12,17 +20,13 @@ fetch(wikiApiUrl)
     .then(function(data) {
         console.log(data);
 
-        var linkEl = document.createElement('a');
-        var linkText = 'https://en.wikipedia.org/wiki/' + food[0];
-        linkEl.href = linkText;
-
-        linkEl.append(linkText);
-        wikiDiv.append(linkEl);
-
-        var wikiTextEl = document.createElement('p');
+        var wikiTextEl = $('#food-summary');
         var wikiText = data.extract;
-        wikiTextEl.textContent = wikiText;
-        wikiDiv.append(wikiTextEl);
+        wikiTextEl.text(wikiText);
+
+        var wikiLinkEl = $('#food-link');
+        wikiLinkEl.attr('href', wikiUrl);
+        wikiLinkEl.text(wikiUrl);
 
       }
     );

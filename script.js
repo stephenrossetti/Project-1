@@ -35,6 +35,43 @@ class Food {
     }
 }
 
+//start stephen's code
+
+var food = ['Cheese'];
+var wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+food[0];
+var wikiDiv = $('#food-wiki');
+var getInfoBtn = $('#get-info');
+var linkText = '';
+
+function getWikiApi () {
+fetch(wikiApiUrl)
+    .then(function(response) {
+        console.log(response);
+        return response.json()
+    })
+    .then(function(data) {
+        console.log(data);
+
+        var linkEl = document.createElement('a');
+        linkText = 'https://en.wikipedia.org/wiki/' + food[0];
+        console.log(linkText);
+        linkEl.href = linkText;
+
+        linkEl.append(linkText);
+        wikiDiv.append(linkEl);
+
+        var wikiTextEl = document.createElement('p');
+        var wikiText = data.extract;
+        wikiTextEl.textContent = wikiText;
+        wikiDiv.append(wikiTextEl);
+
+      }
+    );
+}
+
+getInfoBtn.on('click', getWikiApi);
+
+// start logan's code
 // currently has placeholder api
 var foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/1999634?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx';
 // foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/333281?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx'
@@ -45,9 +82,7 @@ console.log(foodDataApi);
 
 // get information from the current API.
 getSelectedAPI = function(api){
-    var apiURL = api;
-
-    fetch(apiURL).then(function(response) {
+    fetch(api).then(function(response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
@@ -67,7 +102,7 @@ createFoodItem = function(foodData) {
     getNutrient('Sugar', foodData),
     getNutrient('Sodium', foodData),
     getNutrient('fat', foodData),
-    "placeholder article")
+    linkText)
 
     console.log(foodItem);
 }
@@ -110,4 +145,6 @@ getNutrient = function(nutrientName, foodData){
     }
 return amount;
 }
+
+
 

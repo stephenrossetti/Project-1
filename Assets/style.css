@@ -1,0 +1,86 @@
+*{
+    font-family: Verdana, sans-serif; 
+ }
+ #header-info {
+     font-size: 50px;
+     background-color: bisque;
+     text-align: center;
+ }
+
+
+
+ #pet-card {
+     display: flex;
+     flex-direction: column;
+     width: 50%;
+     height: 620px;
+     justify-content: space-evenly;
+     background-color: rgb(168, 175, 233);
+     padding-bottom: 10px;
+     
+ }
+
+ #buttons {
+     display: inline;
+     text-align: center;
+ }
+
+ #resources {
+     font-size: 20px;
+ }
+
+ 
+ #food-info {
+     display:flex;
+     background-color: rgb(164, 223, 199);
+    width:45%;
+     
+
+ }
+
+#main-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+ #food-wiki {
+     background-color: rgb(245, 245, 155);
+ }
+
+ #lower-btn{
+    display:flex;
+    flex-direction:column-reverse;
+    align-items: flex-end;
+} 
+
+
+ #food-nutr {
+     background-color: rgb(240, 200, 147);
+     width:60%;
+     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
+
+ #clear-btn {
+     display: inline;
+     text-align: center;
+ }
+
+ #clear-btn:active {
+    background-color: #e9b0a6;
+    box-shadow: 0 5px #bdbaba;
+    transform: translateY(4px);
+  }
+
+
+
+.footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: rgb(151, 172, 212);
+     color: white;
+     text-align: center;
+ }

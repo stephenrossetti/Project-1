@@ -4,8 +4,9 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="Assets/style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/Images/dog_bone_icon_134489.ico">
+    <title>Pet Treat Informer</title>
   </head>
 
   <body>
@@ -14,20 +15,24 @@
     </header>
 
     <div id="pet-card">
-        <div id="profile-dropdown">Select Profile</div>
-
-        <input type="text" id="pet-name">
-
-        <input type="text" id="pet-weight">
-
-        <select name="" id="foods">
-            <option selected>Select food</option>
-            <option>Cheese</option>
-            <option>Apple</option>
-            <option>Nuts</option>
+        <select id="profile-dropdown">
         </select>
 
-        <button type="submit" id="save-btn">Save Profile</button>
+        <form>
+          <input type="text" id="pet-name" placeholder="Pet name">
+
+          <input type="text" id="pet-weight" placeholder="Pet weight">
+
+          <select name="" id="foods">
+              <option selected>Select food</option>
+              <option>Cheese</option>
+              <option>Apple</option>
+              <option>Nuts</option>
+          </select>
+          <button type="submit" id="save-btn">Save Profile</button>
+        </form>
+        <button id="clear-profs" class="btn">Clear profiles</button>
+        
         <button id="get-info">Get Info -></button>
     </div>
 
@@ -43,7 +48,8 @@
     </div>
 
       <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="script.js"></script>
+      <script src="Assets/Javascript/script.js"></script>
+      <script src="Assets/Javascript/profiles.js"></script>
     </section>
   </body>
 

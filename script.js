@@ -1,6 +1,5 @@
-var food = ['Cheese', 'Bacon'];
-// var wikiApiUrl = 'https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search='+ food[1] +'&limit=1&prop=text&format=json';
-var wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+food[1];
+var food = ['Cheese'];
+var wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/'+food[0];
 var wikiDiv = $('#food-wiki');
 var getInfoBtn = $('#get-info');
 
@@ -14,7 +13,7 @@ fetch(wikiApiUrl)
         console.log(data);
 
         var linkEl = document.createElement('a');
-        var linkText = 'https://en.wikipedia.org/wiki/' + food[1];
+        var linkText = 'https://en.wikipedia.org/wiki/' + food[0];
         linkEl.href = linkText;
 
         linkEl.append(linkText);

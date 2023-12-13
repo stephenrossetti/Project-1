@@ -45,7 +45,8 @@ $('#selectedFood').on('change', function(){
     var selectFood = '';
     var wikiApiUrl = '';
     var wikiUrl = '';
-    var wikiDiv = $('#food-wiki');
+    var imgTitle = $('#img-text p');
+    var imgUrl = $('#img-text img');
     var getInfoBtn = $('#get-info');
     
     function getWikiApi () {
@@ -56,6 +57,12 @@ $('#selectedFood').on('change', function(){
         })
         .then(function(data) {
             console.log(data);
+
+            var imgTitleEl = $('#img-title');
+            var imgTitle = data.titles.canonical;
+            imgTitleEl.text(imgTitle);
+
+            imgUrl = $('#img-text img').attr('src', data.thumbnail.source);
     
             var wikiTextEl = $('#food-summary');
             var wikiText = data.extract;

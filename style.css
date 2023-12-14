@@ -41,6 +41,10 @@
     width: 150px;
 }
 
+.select {
+    max-width:18%;
+}
+
 #pet-card {
     display: flex;
     flex-direction: column;

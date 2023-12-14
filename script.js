@@ -1,13 +1,12 @@
 class Food {
-    constructor(name, calories, carbs, fiber, protein, sugar, sodium, fat,  article){
+    constructor(name, calories, carbs, fiber, protein, sugar, sodium, fat){
         this.name = name;
         this.calories = calories;
         this.carbs = carbs;
         this.fiber = fiber;
         this.protein = protein;
         this.sugar = sugar;
-        this.sodium = sodium;
-        this.article = article;   
+        this.sodium = sodium;   
     }
     getCalories(){
         return this.calories;
@@ -26,9 +25,6 @@ class Food {
     }
     getSodium(){
         return this.sodium;
-    }
-    getArticle(){
-        return this.article;
     }
     getName(){
         return this.name;
@@ -71,11 +67,15 @@ $('#selectedFood').on('change', function(){
             var wikiLinkEl = $('#food-link');
             wikiLinkEl.attr('href', wikiUrl);
             wikiLinkEl.text(wikiUrl);
+            
+            // loads data from FoodData API
+            getSelectedAPI(foodDataApi);
     
           }
         );
     }
 
+    //Gets wiki information and displays it
     getInfoBtn.on('click', getWikiApi);
 
 
@@ -127,19 +127,40 @@ $('#selectedFood').on('change', function(){
 
 // start logan's code
 // currently has placeholder api
-var foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/1999634?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx';
-// foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/333281?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx'
+var foodID = 0;
+var foodList = [
+    ['Apples', 1750343],
+    ['Bananas', 1105314],
+    ['Blueberries', 2346411],
+    ['Broccoli',  747447],
+    ['Carrots',  2258586],
+    ['Cheese', 328637],
+    ['Chicken', 331960],
+    ['Cucumber', 2346406],
+    ['Eggs', 747997],
+    ['Oatmeal', 2346396],
+    ['Peanut Butter', 2262072],
+    ['Peas', 2644291],
+    ['Popcorn',  2343707],
+    ['Rice', 2512381],
+    ['Shrimp', 2341777],
+    ['Spinach', 1999633],
+    ['Watermelon', 2344765],
 
-// prints the api link being used.
-console.log(foodDataApi);
+]
+var foodDataApi = `https://api.nal.usda.gov/fdc/v1/food/${foodID}?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx`;
+// foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/333281?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx'
 
 
 // get information from the current API.
 getSelectedAPI = function(api){
+    // prints the api link being used.
+    console.log(foodDataApi);   
     fetch(api).then(function(response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
+
+                console.log("FoodData api information: " + data);
                 createFoodItem(data);
             });
         }
@@ -155,14 +176,10 @@ createFoodItem = function(foodData) {
     getNutrient('Protein', foodData),
     getNutrient('Sugar', foodData),
     getNutrient('Sodium', foodData),
-    getNutrient('fat', foodData),
-    linkText)
+    getNutrient('fat', foodData))
 
-    console.log(foodItem);
+    console.log("info of selected food item: " + foodItem);
 }
-
-// loads data from API
-getSelectedAPI(foodDataApi);
 
 getCalories = function(foodData){
     let amount = 0;
@@ -188,9 +205,9 @@ getNutrient = function(nutrientName, foodData){
         var name = foodData.foodNutrients[i].nutrient.name;
         //console.log(foodData.foodNutrients[i].nutrient.name);
         if(name.includes(nutrientName)){
-            console.log(name);
+            console.log("Nuterient: " + name);
             amount = foodData.foodNutrients[i].amount;
-            console.log(amount);
+            console.log("amount" + amount);
             return amount;
         }
         else{

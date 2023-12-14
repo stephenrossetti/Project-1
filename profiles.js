@@ -9,18 +9,22 @@ class PetProfile {
 }
 
 loadProfiles();
+var profileList = [];
 
 $('#save-btn').on('click', function(event) {
     event.preventDefault();
     var petName = $('#pet-name').val().trim();
     var petWeight = $('#pet-weight').val().trim(); //grabs values from the two text inputs
-
     if(petName.length !== 0 && petWeight.length !== 0){ //if neither are empty
         var petProfile = new PetProfile(petName, petWeight); //creates new petProfile object using the two grabbed values
-        localStorage.setItem('petProfile'+(localStorage.length+1), JSON.stringify(petProfile)); //saves that petProfile object to local storage
-        console.log('New pet profile saved!');
             console.log('\tName: '+petProfile.getName());
             console.log('\tWeight: '+petProfile.getWeight());
+        profileList[profileList.length] = petProfile
+
+
+        localStorage.setItem('petProfile'+(localStorage.length+1), JSON.stringify(petProfile)); //saves that petProfile object to local storage
+        console.log('New pet profile saved!');
+            
         console.log('You now have ' + localStorage.length + ' pet profiles saved.');
         loadProfiles();
 

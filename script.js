@@ -49,6 +49,8 @@ $('#selectedFood').on('change', function(){
     var getInfoBtn = $('#get-info');
     
     function getWikiApi () {
+    
+    
     fetch(wikiApiUrl)
         .then(function(response) {
             console.log(response);

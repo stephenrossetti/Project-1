@@ -5,50 +5,72 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-
-  <title></title>
+  <link rel="icon" type="image/x-icon" href="dog_bone_icon_134489.ico">
+  <title>Pet Treat Informer</title>
 </head>
 
 <body>
   <header>
-    <Div id="img-format">
+    <div id="img-format">
       <img id="dog" src="dog.png" alt="dog">
       <h1 id="header-info">Pet Treat Informer</h1>
-    </Div>
+    </div>
   </header>
   <div id="main-card">
     <div id="pet-card">
       <h1 id="prof-title">Profile Information</h1>
-      <select id="profiles">
+      <select id="profile-dropdown">
         <option selected>Select Pet Profile</option>
-        <option>Pet 1</option>
-        <option>Pet 2</option>
       </select>
 
-      <input type="text" id="pet-name">
+      <input type="text" id="pet-name" placeholder="Pet name">
 
-      <input type="text" id="pet-weight">
+      <input type="text" id="pet-weight" placeholder="Pet weight">
 
-      <select name="" id="foods">
-        <option selected>Select food</option>
-        <option>Cheese</option>
-        <option>Apple</option>
-        <option>Nuts</option>
-      </select>
+      <div class="select is-normal">
+        <select id="selectedFood">
+          <option value="Select Food">Select Food</option>
+          <option value="Apples">Apples</option>
+          <option value="Bananas">Bananas</option>
+          <option value="Blueberries">Blueberries</option>
+          <option value="Broccoli">Broccoli</option>
+          <option value="Carrots">Carrots</option>
+          <option value="Cheese">Cheese</option>
+          <option value="Chicken">Chicken</option>
+          <option value="Cucumbers">Cucumbers</option>
+          <option value="Eggs">Eggs</option>
+          <option value="Oatmeal">Oatmeal</option>
+          <option value="Peanut Butter">Peanut Butter</option>
+          <option value="Peas">Peas</option>
+          <option value="Popcorn">Popcorn</option>
+          <option value="Rice">Rice</option>
+          <option value="Shrimp">Shrimp</option>
+          <option value="Spinach">Spinach</option>
+          <option value="Watermelon">Watermelon</option>
+          <option value="Avocado">*Avocado</option>
+          <option value="Cherries">*Cherries</option>
+          <option value="Chocolate">*Chocolate</option>
+          <option value="Cinnamon">*Cinnamon</option>
+          <option value="Coffee">*Coffee</option>
+          <option value="Grapes">*Grapes</option>
+          <option value="Onions">*Onions</option>
+        </select>
+      </div>
+
       <div id="buttons">
         <button type="submit" id="save-btn">Save Profile</button>
+        <button id="clear-profs" class="btn">Clear profiles</button>
         <button id="get-info">Get Info -></button>
       </div>
     </div>
 
     <div class=api-info id="food-info">
-
-
       <div id="img-text">
         <img id= "tree" src="./tree.jpg" alt="tree">
         <div id="food-wiki">
-          <h2 id="food-title">Food information</h2>
-          <p>food wiki here</p>
+          <p id="food-title">Food information</p>
+          <p id="food-summary"></p>
+          <a id="food-link"></a>
         </div>
       </div>
       <div id="food-nutr">
@@ -60,8 +82,10 @@
       </div>
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="script.js"></script>
+  <script src="profiles.js"></script>
   </section>
 
   <footer class="footer">
@@ -69,6 +93,18 @@
     <p><a href="https://petnutritionalliance.org/resources/calorie-calculator?type=dogs">Dog Calorie Calculator</a>
     <p><a href="https://www.petmd.com/dog/centers/nutrition">Nutrition Articles</a>
   </footer>
+
+  <div id="toxic-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p>This food selection is toxic for dogs! Please visit the ASPCA linked below for official food guidelines</p>
+      </div>
+    </div>
+  
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
 </body>
 
 </html>

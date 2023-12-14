@@ -58,7 +58,7 @@ $('#selectedFood').on('change', function(){
         .then(function(data) {
             console.log(data);
 
-            var imgTitleEl = $('#img-title');
+            var imgTitleEl = $('#food-title');
             var imgTitle = data.titles.canonical;
             imgTitleEl.text(imgTitle);
 

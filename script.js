@@ -45,7 +45,8 @@ $('#selectedFood').on('change', function(){
     var selectFood = '';
     var wikiApiUrl = '';
     var wikiUrl = '';
-    var wikiDiv = $('#food-wiki');
+    var imgTitle = $('#img-text p');
+    var imgUrl = $('#img-text img');
     var getInfoBtn = $('#get-info');
     
     function getWikiApi () {
@@ -56,6 +57,12 @@ $('#selectedFood').on('change', function(){
         })
         .then(function(data) {
             console.log(data);
+
+            var imgTitleEl = $('#img-title');
+            var imgTitle = data.titles.canonical;
+            imgTitleEl.text(imgTitle);
+
+            imgUrl = $('#img-text img').attr('src', data.thumbnail.source);
     
             var wikiTextEl = $('#food-summary');
             var wikiText = data.extract;
@@ -68,8 +75,55 @@ $('#selectedFood').on('change', function(){
           }
         );
     }
-    
+
     getInfoBtn.on('click', getWikiApi);
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Functions to open and close a modal
+        function openModal($el) {
+          $el.classList.add('is-active');
+        }
+      
+        function closeModal($el) {
+          $el.classList.remove('is-active');
+        }
+      
+        function closeAllModals() {
+          (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+          });
+        }
+      
+        // Add a click event on buttons to open a specific modal
+        (document.querySelectorAll('#get-info') || []).forEach(($trigger) => {
+          const modal = $trigger.dataset.target;
+          const $target = document.getElementById(modal);
+      
+          $trigger.addEventListener('click', () => {
+            if (selectFood === 'Avocado' || selectFood === 'Cherries' || selectFood === 'Chocolate' || selectFood === 'Cinnamon' || selectFood === 'Coffee' || selectFood === 'Grapes' || selectFood === 'Onions') {
+            openModal($target);
+            }
+          });
+        });
+      
+        // Add a click event on various child elements to close the parent modal
+        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+          const $target = $close.closest('.modal');
+      
+          $close.addEventListener('click', () => {
+            closeModal($target);
+          });
+        });
+      
+        // Add a keyboard event to close all modals
+        document.addEventListener('keydown', (event) => {
+          if (event.code === 'Escape') {
+            closeAllModals();
+          }
+        });
+      });
+
 
 // start logan's code
 // currently has placeholder api

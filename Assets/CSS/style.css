@@ -15,9 +15,11 @@
     color: aliceblue;
     border-radius: 15px;
     background-color: #543d83;
-    margin-left: 300px;
-    margin-right: 300px;
+    padding: 10px 20px 10px 20px;
+    margin: 0 auto;
 }
+
+
 
 #dog {
     border-radius: 80%;
@@ -38,11 +40,22 @@
 }
 
 #profile-dropdown {
-    width: 150px;
+    width: 250px;
+}
+
+#selectedFood {
+    width: 250px;
 }
 
 .select {
-    max-width:18%;
+    max-width: 250px;
+    margin-left: 40px;
+}
+
+.input {
+    position: relative;
+    left: 40px;
+    width: 70%;
 }
 
 #pet-card {
@@ -58,31 +71,31 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.select {
+    max-width: 250px;
+}
+
 #buttons {
     display: inline;
     text-align: center;
 }
 
-#save-btn {
+#buttons * {
     border-radius: 15px;
+    font-size: 15px;
+    margin: 10px;
 }
 
-#get-info {
-    border-radius: 15px;
-}
-
-#save-btn:active {
+#buttons *:active {
     background-color: #bfa9f1;
     box-shadow: 0 5px #543d83;
     transform: translateY(4px);
-    border-radius: 15px;
 }
 
 #get-info:active {
     background-color: #bfa9f1;
     box-shadow: 0 5px #543d83;
     transform: translateY(4px);
-    border-radius: 15px;
 }
 
 #resources {
@@ -150,21 +163,6 @@
     margin-left: 120px;
     margin-right: 120px;  
     margin-top: 10px
-}
-#clear-btn {
-    display: inline;
-    text-align: center;
-    margin-right: 10px;
-    margin-bottom: 10px;
-   
-}
-
-#clear-btn:active {
-    background-color: #d87462;
-    box-shadow: 0 5px #bdbaba;
-    transform: translateY(4px);
-    border-radius: 15px;
-
 }
 
 

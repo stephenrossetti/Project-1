@@ -66,7 +66,12 @@ $('#selectedFood').on('change', function(){
     ['Shrimp', 2341777],
     ['Spinach', 1999633],
     ['Watermelon', 2344765],
-
+    ['Avocado', 171705],
+    ['Cherries',  173954],
+    ['Chocolate', 170879],
+    ['Coffee', 171881],
+    ['Grapes', 174682],
+    ['Onions', 170000],
 ]
 
     

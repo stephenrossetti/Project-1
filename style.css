@@ -151,23 +151,6 @@
     margin-right: 120px;  
     margin-top: 10px
 }
-#clear-btn {
-    display: inline;
-    text-align: center;
-    margin-right: 10px;
-    margin-bottom: 10px;
-   
-}
-
-#clear-btn:active {
-    background-color: #d87462;
-    box-shadow: 0 5px #bdbaba;
-    transform: translateY(4px);
-    border-radius: 15px;
-
-}
-
-
 
 .footer {
     position: relative;

@@ -6,7 +6,8 @@ class Food {
         this.fiber = fiber;
         this.protein = protein;
         this.sugar = sugar;
-        this.sodium = sodium;   
+        this.sodium = sodium; 
+        this.fat = fat;  
     }
     getCalories(){
         return this.calories;
@@ -36,6 +37,7 @@ $('#selectedFood').on('change', function(){
     selectFood = $(this).val();
     wikiApiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + selectFood;
     wikiUrl = 'https://en.wikipedia.org/wiki/' + selectFood;
+    checkSelectedFood(selectFood);
     });
 
     var selectFood = '';
@@ -44,6 +46,29 @@ $('#selectedFood').on('change', function(){
     var imgTitle = $('#img-text p');
     var imgUrl = $('#img-text img');
     var getInfoBtn = $('#get-info');
+
+    var foodID = 0;
+    var foodList = [
+    ['Apples', 1750343],
+    ['Bananas', 1105314],
+    ['Blueberries', 2346411],
+    ['Broccoli',  747447],
+    ['Carrots',  2258586],
+    ['Cheese', 328637],
+    ['Chicken', 331960],
+    ['Cucumber', 2346406],
+    ['Eggs', 747997],
+    ['Oatmeal', 2346396],
+    ['Peanut Butter', 2262072],
+    ['Peas', 2644291],
+    ['Popcorn',  2343707],
+    ['Rice', 2512381],
+    ['Shrimp', 2341777],
+    ['Spinach', 1999633],
+    ['Watermelon', 2344765],
+
+]
+
     
     function getWikiApi () {
     fetch(wikiApiUrl)
@@ -69,6 +94,8 @@ $('#selectedFood').on('change', function(){
             wikiLinkEl.text(wikiUrl);
             
             // loads data from FoodData API
+            console.log("Current food id: " + foodID);
+            var foodDataApi = `https://api.nal.usda.gov/fdc/v1/food/` + foodID + `?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx`;
             getSelectedAPI(foodDataApi);
     
           }
@@ -126,49 +153,41 @@ $('#selectedFood').on('change', function(){
 
 
 // start logan's code
-// currently has placeholder api
-var foodID = 0;
-var foodList = [
-    ['Apples', 1750343],
-    ['Bananas', 1105314],
-    ['Blueberries', 2346411],
-    ['Broccoli',  747447],
-    ['Carrots',  2258586],
-    ['Cheese', 328637],
-    ['Chicken', 331960],
-    ['Cucumber', 2346406],
-    ['Eggs', 747997],
-    ['Oatmeal', 2346396],
-    ['Peanut Butter', 2262072],
-    ['Peas', 2644291],
-    ['Popcorn',  2343707],
-    ['Rice', 2512381],
-    ['Shrimp', 2341777],
-    ['Spinach', 1999633],
-    ['Watermelon', 2344765],
-
-]
-var foodDataApi = `https://api.nal.usda.gov/fdc/v1/food/${foodID}?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx`;
 // foodDataApi = 'https://api.nal.usda.gov/fdc/v1/food/333281?api_key=Z48TYWkfWlJkfT1ReGVPEqcbi3Ivi0sAG2uluFxx'
 
 
 // get information from the current API.
 getSelectedAPI = function(api){
     // prints the api link being used.
-    console.log(foodDataApi);   
+    console.log(api);   
     fetch(api).then(function(response) {
         if (response.ok) {
             response.json().then(function (data) {
 
                 console.log("FoodData api information: " + data);
-                createFoodItem(data);
+                var foodObj = createFoodObj(data);
+                renderNutritionData(foodObj);
             });
         }
     } )
 }
 
+// updates html to display treat nutrition
+renderNutritionData = function(obj) {
+    console.log(Object.keys(obj).length);
+    console.log(Object.keys(obj)[1]);
+    for(let i = 1; i < Object.keys(obj).length; i++){
+        console.log("Updated text");
+        let element = document.getElementById(Object.keys(obj)[i]);
+        console.log(Object.keys(obj)[i])
+        let nName = Object.keys(obj)[i];
+        element.textContent = `${Object.keys(obj)[i]}: ${obj[nName]}`;
+    }
+}
+
+
 // takes data from getSelectedAPI and collects relevant information
-createFoodItem = function(foodData) {
+createFoodObj = function(foodData) {
  var foodItem = new Food(foodData.description,
     getCalories(foodData),
     getNutrient('Carbohydrate, by difference', foodData),
@@ -179,6 +198,7 @@ createFoodItem = function(foodData) {
     getNutrient('fat', foodData))
 
     console.log("info of selected food item: " + foodItem);
+    return foodItem;
 }
 
 getCalories = function(foodData){
@@ -217,5 +237,14 @@ getNutrient = function(nutrientName, foodData){
 return amount;
 }
 
+checkSelectedFood = function(foodName){
+    for(let i = 0; i < foodList.length; i++){
+        if(foodList[i][0] === foodName){
+            foodID = foodList[i][1];
+            console.log("Selected food and ID is: " + foodName + " " + foodID);
+            return foodID;
+        }
+    }
+}
 
 

@@ -56,7 +56,7 @@ $('#selectedFood').on('change', function(){
     ['Carrots',  2258586],
     ['Cheese', 328637],
     ['Chicken', 331960],
-    ['Cucumber', 2346406],
+    ['Cucumbers', 2346406],
     ['Eggs', 747997],
     ['Oatmeal', 2346396],
     ['Peanut Butter', 2262072],

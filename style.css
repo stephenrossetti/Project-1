@@ -41,6 +41,10 @@
     width: 150px;
 }
 
+.select {
+    max-width:18%;
+}
+
 #pet-card {
     display: flex;
     flex-direction: column;
@@ -85,7 +89,7 @@
     font-size: 20px;
 }
 
-#tree{
+#images {
     margin-top: 10px;
     border-radius: 50%;
 }
@@ -166,7 +170,7 @@
 
 
 .footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -174,5 +178,6 @@
     color: white;
     text-shadow: 1px 1px rgb(83, 82, 82);
     text-align: center;
-    padding: 48px 24px 20px 25px
+    padding: 48px 24px 20px 25px;
+    margin-top: 20px;
 }

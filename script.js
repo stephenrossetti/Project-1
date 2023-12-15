@@ -71,6 +71,8 @@ $('#selectedFood').on('change', function(){
 
     
     function getWikiApi () {
+    
+    
     fetch(wikiApiUrl)
         .then(function(response) {
             console.log(response);

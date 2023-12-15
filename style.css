@@ -41,6 +41,10 @@
     width: 150px;
 }
 
+.select {
+    max-width:18%;
+}
+
 #pet-card {
     display: flex;
     flex-direction: column;
@@ -85,7 +89,7 @@
     font-size: 20px;
 }
 
-#tree{
+#images {
     margin-top: 10px;
     border-radius: 50%;
 }

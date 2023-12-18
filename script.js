@@ -168,6 +168,7 @@ getSelectedAPI = function(api){
 
                 console.log("FoodData api information: " + data);
                 var foodObj = createFoodObj(data);
+                console.log("Food object\n");
                 renderNutritionData(foodObj);
             });
         }
@@ -178,22 +179,25 @@ getSelectedAPI = function(api){
 renderNutritionData = function(obj) {
     console.log(Object.keys(obj).length);
     console.log(Object.keys(obj)[1]);
-    for(let i = 1; i < Object.keys(obj).length; i++){
+    let element = document.getElementById('calories');
+    element.textContent = `calories: ${obj.calories}`;
+    for(let i = 2; i < Object.keys(obj).length; i++){
         console.log("Updated text");
-        let element = document.getElementById(Object.keys(obj)[i]);
+        element = document.getElementById(Object.keys(obj)[i]);
         console.log(Object.keys(obj)[i])
         let nName = Object.keys(obj)[i];
-        element.textContent = `${Object.keys(obj)[i]}: ${obj[nName]}`;
+        element.textContent = `${Object.keys(obj)[i]}: ${obj[nName]['amount']}${obj[nName]['unit']}`;
     }
 }
 
 
 // takes data from getSelectedAPI and collects relevant information
 createFoodObj = function(foodData) {
+    console.log(foodData);
  var foodItem = new Food(foodData.description,
     getCalories(foodData),
     getNutrient('Carbohydrate, by difference', foodData),
-    getNutrient('fiber', foodData),
+    getNutrient('Fiber', foodData),
     getNutrient('Protein', foodData),
     getNutrient('Sugar', foodData),
     getNutrient('Sodium', foodData),
@@ -223,20 +227,22 @@ getNutrient = function(nutrientName, foodData){
     console.log("getNutrient run");
     console.log("foodData length: " + foodData.foodNutrients.length)
     var amount = 0;
+    var foodObj = {
+        amount: 'na',
+        unit: ''
+    };
     for(let i = 0; i < foodData.foodNutrients.length; i++){
         var name = foodData.foodNutrients[i].nutrient.name;
         //console.log(foodData.foodNutrients[i].nutrient.name);
         if(name.includes(nutrientName)){
-            console.log("Nuterient: " + name);
-            amount = foodData.foodNutrients[i].amount;
-            console.log("amount" + amount);
-            return amount;
-        }
-        else{
-            amount = 'na';
+            console.log("Nutrient: " + name);
+            foodObj['amount'] = foodData.foodNutrients[i].amount;
+            console.log("amount: " + foodObj['amount']);
+            foodObj['unit']= foodData.foodNutrients[i].nutrient.unitName;
+            console.log(foodObj['unit']);
         }
     }
-return amount;
+    return foodObj;
 }
 
 checkSelectedFood = function(foodName){

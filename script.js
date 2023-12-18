@@ -186,21 +186,25 @@ renderNutritionData = function(obj) {
         element = document.getElementById(Object.keys(obj)[i]);
         console.log(Object.keys(obj)[i])
         let nName = Object.keys(obj)[i];
-        element.textContent = `${Object.keys(obj)[i]}: ${obj[nName]['amount']}${obj[nName]['unit']}`;
+        element.textContent = `${Object.keys(obj)[i]}: ${roundToHundredth(obj[nName]['amount'])}${obj[nName]['unit']}`;
     }
 }
 
+roundToHundredth = function(num) {
+    var result = Math.round(100*num)/100;
+    return result;
+}
 
 // takes data from getSelectedAPI and collects relevant information
 createFoodObj = function(foodData) {
     console.log(foodData);
  var foodItem = new Food(foodData.description,
     getCalories(foodData),
-    getNutrient('Carbohydrate, by difference', foodData),
-    getNutrient('Fiber', foodData),
-    getNutrient('Protein', foodData),
-    getNutrient('Sugar', foodData),
-    getNutrient('Sodium', foodData),
+    getNutrient('carbohydrate, by difference', foodData),
+    getNutrient('fiber', foodData),
+    getNutrient('protein', foodData),
+    getNutrient('sugar', foodData),
+    getNutrient('sodium', foodData),
     getNutrient('fat', foodData))
 
     console.log("info of selected food item: " + foodItem);
@@ -234,7 +238,7 @@ getNutrient = function(nutrientName, foodData){
     for(let i = 0; i < foodData.foodNutrients.length; i++){
         var name = foodData.foodNutrients[i].nutrient.name;
         //console.log(foodData.foodNutrients[i].nutrient.name);
-        if(name.includes(nutrientName)){
+        if(name.toLowerCase().includes(nutrientName)){
             console.log("Nutrient: " + name);
             foodObj['amount'] = foodData.foodNutrients[i].amount;
             console.log("amount: " + foodObj['amount']);

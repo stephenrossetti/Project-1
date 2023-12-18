@@ -69,6 +69,7 @@ $('#selectedFood').on('change', function(){
     ['Avocado', 171705],
     ['Cherries',  173954],
     ['Chocolate', 170879],
+    ['Cinnamon', 171320],
     ['Coffee', 171881],
     ['Grapes', 174682],
     ['Onions', 170000],
@@ -87,7 +88,7 @@ $('#selectedFood').on('change', function(){
             console.log(data);
 
             var imgTitleEl = $('#food-title');
-            var imgTitle = data.titles.canonical;
+            var imgTitle = data.title;
             imgTitleEl.text(imgTitle);
 
             imgUrl = $('#img-text img').attr('src', data.thumbnail.source);
@@ -214,7 +215,7 @@ getCalories = function(foodData){
     for(let i = 0; i < foodData.foodNutrients.length; i++){
         var nutrients = foodData.foodNutrients[i].nutrient;
         if(nutrients.name.includes('Energy') && nutrients.unitName.includes('kcal')){
-            amount = foodData.foodNutrients[i].amount;
+            amount = Math.round(parseInt(foodData.foodNutrients[i].amount));
             return amount;
         }
         else {
@@ -233,7 +234,7 @@ getNutrient = function(nutrientName, foodData){
         //console.log(foodData.foodNutrients[i].nutrient.name);
         if(name.includes(nutrientName)){
             console.log("Nuterient: " + name);
-            amount = foodData.foodNutrients[i].amount;
+            amount = Math.round((foodData.foodNutrients[i].amount)*100)/100+'g';
             console.log("amount" + amount);
             return amount;
         }

@@ -234,7 +234,7 @@ getNutrient = function(nutrientName, foodData){
         //console.log(foodData.foodNutrients[i].nutrient.name);
         if(name.includes(nutrientName)){
             console.log("Nuterient: " + name);
-            amount = Math.round(parseInt(foodData.foodNutrients[i].amount))+'g';
+            amount = Math.round((foodData.foodNutrients[i].amount)*100)/100+'g';
             console.log("amount" + amount);
             return amount;
         }

@@ -2,9 +2,9 @@
 
 ## Description
 
-- We wated to create a website where dog owners can search up common human foods they might want to feed thier dogs. We want to provide nutritional information on those foods and also give general information on it.
-- We wanted to be able to have a simple website that a person can navigate to make searching for nutrition information easier. 
-- The website can make it easier for people to serch if they can feed their dog a common human food without having to search through multiple pages to look for information. It will also display a warning on foods that casue harmful side effects if consumed.
+- We wanted to create a website where dog owners can search common human foods they want to feed their dogs. We want to provide nutritional information on those foods and also provide general background information on it.
+- We wanted to be able to have a simple website that a person can navigate to make searching for nutritional information easier. 
+- The website can make it easier for people to search if they can feed their dog a common human food without having to search through multiple pages to look for information. It will also display a warning on foods that casue harmful side effects if consumed.
 
 ## Deployed Website
 ### https://stephenrossetti.github.io/Project-1 
